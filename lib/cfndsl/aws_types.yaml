@@ -93,7 +93,6 @@ Resources:
    Properties:
     AvailabilityZone: String
     DisableApiTermination: String
-    IamInstanceProfile: String
     ImageId: String
     InstanceType: String
     KernelId: String
@@ -119,6 +118,36 @@ Resources:
   "AWS::EC2::InternetGateway" :
    Properties:
     Tags: [ EC2Tag ]
+  "AWS::EC2::NetworkAcl" :
+   Properties:
+    Tags: [ EC2Tag ]
+    VpcId: String
+  "AWS::EC2::NetworkAclEntry" :
+   Properties:
+    CidrBlock: String
+    Egress: Boolean
+    Icmp: EC2Icmp 
+    NetworkAclId: String
+    PortRange: EC2PortRange
+    Protocol: Integer
+    RuleAction: String
+    RuleNumber: Integer
+  "AWS::EC2::NetworkInterface" :
+   Properties:
+    Description: String
+    GroupSet: [ String ]
+    PrivateIpAddress: String
+    PrivateIpAddresses: [ PrivateIpAddressSpecification ]
+    SecondaryPrivateIpAddressCount: Integer
+    SourceDestCheck: Boolean
+    SubnetId: String
+    Tags: [ EC2Tag ]
+  "AWS::EC2::NetworkInterfaceAttachment" :
+   Properties:
+    DeleteOnTermination: Boolean
+    DeviceIndex: Integer
+    InstanceId: String
+    NetworkInterfaceId: String
   "AWS::EC2::Route" :
    Properties:
     DestinationCidrBlock: String
@@ -161,6 +190,10 @@ Resources:
     VpcId: String
     CidrBlock: String
     Tags: [ EC2Tag ]
+  "AWS::EC2::SubnetNetworkAclAssociation" :
+   Properties:
+    SubnetId: String
+    NetworkAclId: String
   "AWS::EC2::SubnetRouteTableAssociation" :
    Properties:
     SubnetId: String
@@ -422,9 +455,15 @@ Types:
  MetricDimension:
   Name: String
   Value: String
+ EC2Icmp:
+  Code: Integer
+  Type: Integer
  EC2MountPoint:
   Device: String
   VolumeId: String
+ EC2PortRange:
+  From: Integer
+  To: Integer
  EC2SecurityGroupRule:
   IpProtocol: String
   CidrIp: String
@@ -473,6 +512,9 @@ Types:
   Protocol: String
   SSLCertificateId: String
   PolicyNames: [ LBOrAppCookieStickinessPolicy ]
+ PrivateIpAddressSpecification:
+  PrivateIpAddress: String
+  Primary: Boolean
  RDSSecurityGroupRule:
   CIDRIP: String
   EC2SecurityGroupName: String
