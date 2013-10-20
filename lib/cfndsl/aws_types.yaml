@@ -94,7 +94,6 @@ Resources:
     AvailabilityZone: String
     DisableApiTermination: String
     ImageId: String
-    IamInstanceProfile: String 
     InstanceType: String
     KernelId: String
     KeyName: String
@@ -166,6 +165,7 @@ Resources:
      SecurityGroupIngress: [ EC2SecurityGroupRule ]
      SecurityGroupEgress: [ EC2SecurityGroupRule ]
      VpcId: String
+     Tags: [ EC2Tag ]
   "AWS::EC2::SecurityGroupEgress" :
    Properties:
     GroupId: String
