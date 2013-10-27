@@ -7,21 +7,26 @@ Resources:
     HealthCheckGracePeriod: Integer
     HealthCheckType: String
     LaunchConfigurationName: String
-    LoadBalancers: [ String ]
-    MaxSize: Integer
-    MinSize: Integer
+    LoadBalancerNames: [ String ]
+    MaxSize: String
+    MinSize: String
     NotificationConfiguration: String
     Tags: [ AutoScalingTags ]
     VPCZoneIdentifier: [ String ]
   "AWS::AutoScaling::LaunchConfiguration" :
     Properties:
+     AssociatePublicIpAddress: Boolean
      BlockDeviceMappings: [ BlockDeviceMapping ]
+     EbsOptimized: Boolean
+     IamInstanceProfile: String
      ImageId: String
+     InstanceMonitoring: Boolean
      InstanceType: String
      KernelId: String
      KeyName: String
      RamDiskId: String
      SecurityGroups: [ String ]
+     SpotPrice: String
      UserData: String
   "AWS::Autoscaling::ScalingPolicy" :
    Properties:
